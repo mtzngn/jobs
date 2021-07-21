@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
 const ReviewScreen = ( { navigation }) => {
     console.log(navigation)
@@ -14,7 +14,12 @@ const ReviewScreen = ( { navigation }) => {
 
 ReviewScreen.navigationOptions = ({ navigation }) => {
     return {
-        title: "Review Jobs"
+        title: "Review Jobs",
+        headerRight: (
+            <TouchableOpacity onPress={() => navigation.navigate('settings')}>
+                <Text>Go to right</Text>
+            </TouchableOpacity>
+        )
     }};
 
 export default ReviewScreen;
