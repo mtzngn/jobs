@@ -1,21 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createAppContainer } from 'react-navigation';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import AuthScreen from './screens/AuthScreen';
+import WelcomeScreen from './screens/AuthScreen';
+
+
+
+  const MainNavigator = createBottomTabNavigator({
+    auth: AuthScreen,
+    welcome: WelcomeScreen
+  })
+
+  const App = createAppContainer(MainNavigator);
+
+  export default () => {
+    return (
+     <App />
+    );
+  };
