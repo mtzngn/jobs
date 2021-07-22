@@ -1,9 +1,10 @@
 import React from 'react';
-import { Settings, StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { Provider } from 'react-redux';
 
+import store from './store';
 import AuthScreen from './screens/AuthScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
@@ -32,6 +33,8 @@ const App = createAppContainer(MainNavigator);
 
 export default () => {
   return (
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   );
 };
