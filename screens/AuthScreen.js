@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-const AuthScreen = () => {
+const AuthScreen = ({facebookLogin}) => {
+    useEffect(() => {
+        console.log('Code was here')
+        try {
+            facebookLogin()
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
     return (
         <View>
             <Text style={{marginTop: 50}}>It is auth screen</Text>
@@ -10,4 +20,4 @@ const AuthScreen = () => {
 
 };
 
-export default AuthScreen;
+export default connect(null, actions)(AuthScreen);
