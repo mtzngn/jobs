@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 const AuthScreen = () => {
     return (
         <View>
-            <Text>It is auth screen</Text>
+            <Text style={{marginTop: 50}}>It is auth screen</Text>
         </View>
     )
 

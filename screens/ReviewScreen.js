@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 const ReviewScreen = ( { navigation }) => {
-    console.log(navigation)
 
     return (
         <View>
@@ -17,9 +16,10 @@ ReviewScreen.navigationOptions = ({ navigation }) => {
         title: "Review Jobs",
         headerRight: (
             <TouchableOpacity onPress={() => navigation.navigate('settings')}>
-                <Text>Go to right</Text>
+                <Text style={{color: 'rgb(0, 122, 255)',fontSize: 20}}>Settings</Text>
             </TouchableOpacity>
-        )
+        ),
+        
     }};
 
 export default ReviewScreen;
