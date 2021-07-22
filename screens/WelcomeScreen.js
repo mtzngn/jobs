@@ -8,13 +8,21 @@ const SLIDE_DATA = [
     { text: 'Find your dream Job', color: '#03A9F4'}
 ];
 
-const WelcomeScreen = () => {
+
+
+const WelcomeScreen = ({ navigation }) => {
+
+    const onSlideCompelete = () => {
+        navigation.navigate('auth')
+    }
     return (
         <View style={{ flex: 1}}>
-            <Slides data={SLIDE_DATA} />
+            <Slides data={SLIDE_DATA} onComplete={onSlideCompelete}  />
         </View>
     )
 
 };
 
 export default WelcomeScreen;
+
+
