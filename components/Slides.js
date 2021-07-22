@@ -1,21 +1,32 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Dimensions, Button } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+
+const renderLastSlide = (index, data) => {
+    if (index === data.length - 1) {
+        return (
+            <Button 
+            title='Onwards!'
+            raised
+            />
+        );
+    }
+}
 
 const Slides = ({ data }) => {
 
     const renderSlides = () => {
-        return data.map((slide) => {
+        return data.map((slide, index) => {
             return (
                 <View 
                 key={slide.text} 
                 style={[styles.slideStyle, {backgroundColor: slide.color}]}>
                     <Text style={styles.textStyle}>{slide.text}</Text>
+                    {renderLastSlide(index, data)}
                 </View>
             );
         });
-
     };
 
     return (
@@ -24,9 +35,8 @@ const Slides = ({ data }) => {
         pagingEnabled
         style={styles.scrollStyle}
         >
-            {renderSlides()}
+        {renderSlides()}
         </ScrollView>
-
     )
 };
 
