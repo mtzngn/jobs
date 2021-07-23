@@ -90,7 +90,7 @@ const Swipe = (props) => {
         if (i === index) {
           return (
             <Animated.View
-              key={item.id}
+              key={item}
               style={[getCardStyle(), styles.cardStyle]}
               {...panResponder.panHandlers}
             >
@@ -100,7 +100,7 @@ const Swipe = (props) => {
         }
         return (
           <Animated.View
-            style={[styles.cardStyle, { top: 10 * (i - index) }]}
+            style={[styles.cardStyle, { top: 10 * (i - index), zIndex: -i }]}
             key={item.id}
           >
             {props.renderCard(item)}

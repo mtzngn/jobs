@@ -4,9 +4,8 @@ import { Card } from "react-native-elements";
 import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Swipe from "../components/Swipe";
-
+import * as actions from "../actions";
 const DeckScreen = (props) => {
-  console.log(props);
   const renderCard = (job) => {
     const initialRegion = {
       longitude: job.longitude,
@@ -44,11 +43,14 @@ const DeckScreen = (props) => {
   };
 
   return (
-    <View>
+    <View style={{ marginTop: 20 }}>
       <Swipe
         data={props.jobs}
         renderCard={renderCard}
         renderNoMoreCards={renderNoMoreCards}
+        keyProp="jobkey"
+        onSwipeRight={(job) => props.likeJob(job)}
+        onSwipeLeft={() => {}}
       />
     </View>
   );
@@ -66,4 +68,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps)(DeckScreen);
+export default connect(mapStateToProps, actions)(DeckScreen);
