@@ -8,6 +8,8 @@ const AuthScreen = (props) => {
   const { facebookLogin, navigation } = props;
 
   useEffect(() => {
+    const { token } = props;
+    if ({ token }) navigation.navigate("map");
     facebookLogin();
     onAuthComplete(props);
   }, []);
