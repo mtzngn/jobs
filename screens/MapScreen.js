@@ -23,7 +23,9 @@ const MapScreen = (props) => {
     setRegion(region);
   };
   const onButtonPress = () => {
-    props.fetchJobs(region);
+    props.fetchJobs(region, () => {
+      props.navigation.navigate("deck");
+    });
   };
 
   if (!mapLoaded) {
