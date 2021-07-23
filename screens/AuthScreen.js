@@ -4,14 +4,11 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 const AuthScreen = ({facebookLogin}) => {
+
     useEffect(() => {
-        console.log('Code was here')
-        try {
-            facebookLogin()
-        } catch (error) {
-            console.log(error)
-        }
-    }, [])
+        facebookLogin()
+    }, []);
+    
     return (
         <View>
             <Text style={{marginTop: 50}}>It is auth screen</Text>

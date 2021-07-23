@@ -27,7 +27,12 @@ const MainNavigator = createBottomTabNavigator({
       })
     })
   }
-})
+}, {
+  defaultNavigationOptions: {
+  tabBarVisible: false
+  },
+  lazy: true
+});
 
 const App = createAppContainer(MainNavigator);
 
