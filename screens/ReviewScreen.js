@@ -1,19 +1,34 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Card } from "react-native-elements";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Lingking,
+  Linking,
+} from "react-native";
+import { Card, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 
 const ReviewScreen = ({ navigation, likedJobs }) => {
+  console.log(likedJobs.length);
   const renderLikedJobs = () => {
     return likedJobs.map((job) => {
+      const { company, formattedRelativeTime, url, jobkey, jobtitle } = job;
+
       return (
-        <Card>
+        <Card title={jobtitle} key={jobkey}>
           <View style={{ height: 200 }}>
             <View style={styles.detailsWrapper}>
-              <Text style={styles.italics}>{job.company}</Text>
-              <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+              <Text style={styles.italics}>{company}</Text>
+              <Text style={styles.italics}>{formattedRelativeTime}</Text>
             </View>
+            <Button
+              title="Apply Now"
+              backgroundColor="#03A9F4"
+              onPress={() => Linking.openURL(url)}
+            />
           </View>
         </Card>
       );
