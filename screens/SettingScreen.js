@@ -2,9 +2,10 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Button } from "react-native-elements";
 import { connect } from "react-redux";
-import { clearLikedJobs } from "../actions";
+import * as actions from "../actions";
 
-const SettingScreen = () => {
+const SettingScreen = (props) => {
+  console.log(props);
   return (
     <View>
       <Button
@@ -12,10 +13,10 @@ const SettingScreen = () => {
         large
         icon={{ name: "delete-forever" }}
         backgroundColor="#F44336"
-        onPress={clearLikedJobs}
+        onPress={props.clearLikedJobs}
       />
     </View>
   );
 };
 
-export default connect(null, clearLikedJobs)(SettingScreen);
+export default connect(null, actions)(SettingScreen);

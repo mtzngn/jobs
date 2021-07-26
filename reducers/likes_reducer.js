@@ -2,7 +2,6 @@ import _ from "lodash";
 import { LIKE_JOB, CLEAR_LIKED_JOBS } from "../actions/types";
 
 const INITIAL_STATE = {
-  hello: "hello",
   likedJob: [],
 };
 

@@ -11,6 +11,7 @@ import { Card, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+
 const ReviewScreen = ({ navigation, liked }) => {
   const renderLikedJobs = () => {
     return liked.likedJob.map((job) => {
