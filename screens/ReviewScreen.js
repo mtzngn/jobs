@@ -10,9 +10,8 @@ import {
 import { Card, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
-
+import * as actions from "../actions";
 const ReviewScreen = ({ navigation, liked }) => {
-  console.log(liked);
   const renderLikedJobs = () => {
     return liked.likedJob.map((job) => {
       const { company, formattedRelativeTime, url, jobkey, jobtitle } = job;
@@ -65,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps)(ReviewScreen);
+export default connect(mapStateToProps, actions)(ReviewScreen);

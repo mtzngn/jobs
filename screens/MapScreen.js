@@ -7,6 +7,7 @@ import { Button } from "react-native-elements";
 import * as actions from "../actions";
 
 const MapScreen = (props) => {
+  console.log(props);
   const [region, setRegion] = useState({
     longitude: -122,
     latitude: 37,

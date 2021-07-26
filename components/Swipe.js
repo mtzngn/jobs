@@ -18,10 +18,8 @@ const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
 
 const Swipe = (props) => {
-  console.log("COUNTS CURRENT VALUE", props.count);
   const prevData = usePrepValue(props.data);
-  const { count } = props;
-  // const [index, setIndex] = useState(0);
+  const { count, onSwipeLeft, onSwipeRight, data } = props;
   const position = useRef(new Animated.ValueXY()).current;
   const panResponder = React.useMemo(
     () =>
@@ -40,7 +38,7 @@ const Swipe = (props) => {
           }
         },
       }),
-    []
+    [count]
   );
 
   // useEffect(
@@ -62,15 +60,9 @@ const Swipe = (props) => {
   };
 
   const onSwipeComplete = (direction) => {
-    const { onSwipeLeft, onSwipeRight, data } = props;
-    // const item = data[index];
     const item = data[count];
-    console.log(data);
-    console.log(count);
-    console.log(item);
     direction === "right" ? onSwipeRight(item) : onSwipeLeft(item);
     position.setValue({ x: 0, y: 0 });
-    // setIndex((prev) => prev + 1);
     props.actions.increaseCount();
   };
 
@@ -92,13 +84,12 @@ const Swipe = (props) => {
   };
 
   const renderCards = () => {
-    if (count >= props.data.length) return props.renderNoMoreCards(); //index changed to count
+    if (count >= props.data.length) return props.renderNoMoreCards();
 
     return props.data
       .map((item, i) => {
-        if (i < count) return null; //index changed to count
+        if (i < count) return null;
         if (i === count) {
-          //index changed to count
           return (
             <Animated.View
               key={item}
