@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Swipe from "../components/Swipe";
 import * as actions from "../actions";
-import { Button } from "react-native-elements";
-// import likeJob from "../actions/job_actions";
+import { Button, Icon } from "react-native-elements";
 
 const DeckScreen = (props) => {
   const renderCard = (job) => {
@@ -77,5 +76,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 });
+
+DeckScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: "Jobs",
+    tabBarIcon: <Icon name={"description"} size={30} />,
+  };
+};
 
 export default connect(mapStateToProps, actions)(DeckScreen);

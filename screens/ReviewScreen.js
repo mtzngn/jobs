@@ -7,7 +7,7 @@ import {
   Lingking,
   Linking,
 } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card, Button, Icon } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 import * as actions from "../actions";
@@ -40,6 +40,8 @@ const ReviewScreen = ({ navigation, liked }) => {
 ReviewScreen.navigationOptions = ({ navigation }) => {
   return {
     title: "Review Jobs",
+    tabBarIcon: <Icon name={"favorite"} size={30} />,
+
     headerRight: (
       <TouchableOpacity onPress={() => navigation.navigate("settings")}>
         <Text style={{ color: "rgb(0, 122, 255)", fontSize: 20 }}>

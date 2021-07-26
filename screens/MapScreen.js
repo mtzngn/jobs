@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, ActivityIndicator, StyleSheet } from "react-native";
 import MapView from "react-native-maps";
 import { connect } from "react-redux";
-import { Button } from "react-native-elements";
+import { Button, Icon } from "react-native-elements";
 
 import * as actions from "../actions";
 
@@ -54,6 +54,13 @@ const MapScreen = (props) => {
       </View>
     </View>
   );
+};
+
+MapScreen.navigationOptions = () => {
+  return {
+    title: "Maps",
+    tabBarIcon: <Icon name={"my-location"} size={30} />,
+  };
 };
 
 const styles = StyleSheet.create({
