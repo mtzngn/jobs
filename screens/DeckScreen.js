@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Swipe from "../components/Swipe";
 import * as actions from "../actions";
+import { Button } from "react-native-elements";
 // import likeJob from "../actions/job_actions";
 
 const DeckScreen = (props) => {
@@ -39,7 +40,14 @@ const DeckScreen = (props) => {
   const renderNoMoreCards = () => {
     return (
       <Card>
-        <Card title="No more jobs" />
+        <Text style={{ fontSize: 30 }}>No More Jobs</Text>
+        <Button
+          title="Back to Map"
+          large
+          icon={{ name: "my-location" }}
+          backgroundColor="#03A9F4"
+          onPress={() => props.navigation.navigate("map")}
+        />
       </Card>
     );
   };

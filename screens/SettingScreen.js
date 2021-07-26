@@ -4,8 +4,7 @@ import { Button } from "react-native-elements";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-const SettingScreen = (props) => {
-  console.log(props);
+const SettingScreen = ({ clearLikedJobs }) => {
   return (
     <View>
       <Button
@@ -13,7 +12,7 @@ const SettingScreen = (props) => {
         large
         icon={{ name: "delete-forever" }}
         backgroundColor="#F44336"
-        onPress={props.clearLikedJobs}
+        onPress={clearLikedJobs}
       />
     </View>
   );
