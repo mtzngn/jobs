@@ -9,14 +9,19 @@ import {
   UIManager,
 } from "react-native";
 import usePrepValue from "../hooks/usePrepValue";
+import { connect } from "react-redux";
+import * as actions from "../actions";
+import { bindActionCreators } from "redux";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 250;
 
 const Swipe = (props) => {
+  console.log("COUNTS CURRENT VALUE", props.count);
   const prevData = usePrepValue(props.data);
-  const [index, setIndex] = useState(0);
+  const { count } = props;
+  // const [index, setIndex] = useState(0);
   const position = useRef(new Animated.ValueXY()).current;
   const panResponder = React.useMemo(
     () =>
@@ -38,15 +43,15 @@ const Swipe = (props) => {
     []
   );
 
-  useEffect(
-    (nextProps) => {
-      UIManager.setLayoutAnimationEnabledExperimental &&
-        UIManager.setLayoutAnimationEnabledExperimental(true);
-      LayoutAnimation.spring();
-      if (prevData !== props.data) setIndex(0);
-    },
-    [index]
-  );
+  // useEffect(
+  //   (nextProps) => {
+  //     UIManager.setLayoutAnimationEnabledExperimental &&
+  //       UIManager.setLayoutAnimationEnabledExperimental(true);
+  //     LayoutAnimation.spring();
+  //     if (prevData !== props.data) props.resetCounter();
+  //   },
+  //   [count]
+  // );
 
   const forceSwipe = (direction) => {
     const x = direction === "right" ? SCREEN_WIDTH : -SCREEN_WIDTH;
@@ -58,10 +63,15 @@ const Swipe = (props) => {
 
   const onSwipeComplete = (direction) => {
     const { onSwipeLeft, onSwipeRight, data } = props;
-    const item = data[index];
+    // const item = data[index];
+    const item = data[count];
+    console.log(data);
+    console.log(count);
+    console.log(item);
     direction === "right" ? onSwipeRight(item) : onSwipeLeft(item);
     position.setValue({ x: 0, y: 0 });
-    setIndex((prev) => prev + 1);
+    // setIndex((prev) => prev + 1);
+    props.actions.increaseCount();
   };
 
   const resetPosition = () => {
@@ -82,17 +92,19 @@ const Swipe = (props) => {
   };
 
   const renderCards = () => {
-    if (index >= props.data.length) return props.renderNoMoreCards();
+    if (count >= props.data.length) return props.renderNoMoreCards(); //index changed to count
 
     return props.data
       .map((item, i) => {
-        if (i < index) return null;
-        if (i === index) {
+        if (i < count) return null; //index changed to count
+        if (i === count) {
+          //index changed to count
           return (
             <Animated.View
               key={item}
               style={[getCardStyle(), styles.cardStyle]}
               {...panResponder.panHandlers}
+              useNativeDriver={true}
             >
               {props.renderCard(item)}
             </Animated.View>
@@ -100,8 +112,9 @@ const Swipe = (props) => {
         }
         return (
           <Animated.View
-            style={[styles.cardStyle, { top: 10 * (i - index), zIndex: -i }]}
+            style={[styles.cardStyle, { top: 10 * (i - count), zIndex: -i }]}
             key={item.id}
+            useNativeDriver={true}
           >
             {props.renderCard(item)}
           </Animated.View>
@@ -119,4 +132,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Swipe;
+const mapStateToProps = (state) => {
+  return { count: state.counter.count };
+};
+
+const mapActionsToProps = (dispatch) => {
+  return { actions: bindActionCreators({ ...actions }, dispatch) };
+};
+
+export default connect(mapStateToProps, mapActionsToProps)(Swipe);

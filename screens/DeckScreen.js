@@ -5,7 +5,10 @@ import { connect } from "react-redux";
 import MapView from "react-native-maps";
 import Swipe from "../components/Swipe";
 import * as actions from "../actions";
+import likeJob from "../actions/job_actions";
+
 const DeckScreen = (props) => {
+  console.log(props);
   const renderCard = (job) => {
     const initialRegion = {
       longitude: job.longitude,
@@ -14,7 +17,7 @@ const DeckScreen = (props) => {
       longitudeDelta: 0.02,
     };
     return (
-      <Card>
+      <Card key={job.jobtitle}>
         <Card.Title>{job.jobtitle}</Card.Title>
         <View style={{ height: 300 }}>
           <MapView
@@ -68,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect(mapStateToProps, actions)(DeckScreen);
+export default connect(mapStateToProps, { ...actions, likeJob })(DeckScreen);

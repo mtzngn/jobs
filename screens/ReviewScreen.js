@@ -11,10 +11,10 @@ import { Card, Button } from "react-native-elements";
 import { ScrollView } from "react-native-gesture-handler";
 import { connect } from "react-redux";
 
-const ReviewScreen = ({ navigation, likedJobs }) => {
-  console.log(likedJobs.length);
+const ReviewScreen = ({ navigation, liked }) => {
+  console.log(liked);
   const renderLikedJobs = () => {
-    return likedJobs.map((job) => {
+    return liked.likedJob.map((job) => {
       const { company, formattedRelativeTime, url, jobkey, jobtitle } = job;
 
       return (
@@ -51,7 +51,7 @@ ReviewScreen.navigationOptions = ({ navigation }) => {
 };
 
 const mapStateToProps = (state) => {
-  return { likedJobs: state.likedJobs };
+  return { liked: state.likedJobs };
 };
 
 const styles = StyleSheet.create({
