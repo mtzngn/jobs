@@ -38,7 +38,9 @@ const DeckScreen = (props) => {
   };
   const renderNoMoreCards = () => {
     return (
-      <Card>
+      <View
+        style={{ height: 700, alignItems: "center", justifyContent: "center" }}
+      >
         <Text style={{ fontSize: 30 }}>No More Jobs</Text>
         <Button
           title="Back to Map"
@@ -47,7 +49,7 @@ const DeckScreen = (props) => {
           backgroundColor="#03A9F4"
           onPress={() => props.navigation.navigate("map")}
         />
-      </Card>
+      </View>
     );
   };
 

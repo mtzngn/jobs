@@ -39,8 +39,8 @@ const ReviewScreen = ({ navigation, liked }) => {
 
 ReviewScreen.navigationOptions = ({ navigation }) => {
   return {
-    title: "Review Jobs",
-    tabBarIcon: <Icon name={"favorite"} size={30} />,
+    title: "Review",
+    tabBarIcon: <Icon name={"my-location"} size={30} />,
 
     headerRight: (
       <TouchableOpacity onPress={() => navigation.navigate("settings")}>
